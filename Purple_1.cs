@@ -122,6 +122,11 @@ namespace Lab_6
                     else return 0;
                 });
             }
+
+            public void Print()
+            {
+
+            }
         }
     }
 }

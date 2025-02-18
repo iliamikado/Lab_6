@@ -127,6 +127,8 @@ namespace Lab_6
 
             public static void Sort(Participant[] array)
             {
+                if (array == null) return;
+
                 Array.Sort(array, (a, b) =>
                 {
                     if (a.Score == b.Score)
@@ -142,6 +144,11 @@ namespace Lab_6
                     }
                     return a.Score - b.Score;
                 });
+            }
+
+            public void Print()
+            {
+
             }
         }
     }

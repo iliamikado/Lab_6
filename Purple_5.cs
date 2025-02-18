@@ -32,7 +32,7 @@ namespace Lab_6
                 _concept = concept;
             }
 
-            public static int CountVotes(Response[] responses, int questionNumber)
+            public int CountVotes(Response[] responses, int questionNumber)
             {
                 questionNumber--;
                 int count = 0;
@@ -75,6 +75,8 @@ namespace Lab_6
 
             public void Add(string[] answers)
             {
+                if (answers == null) return;
+
                 string[] ans = new string[] { "", "", "" };
                 for (int i = 0; i < Math.Min(3, answers.Length); i++)
                     ans[i] = answers[i];
@@ -86,6 +88,7 @@ namespace Lab_6
 
             public string[] GetTopResponses(int question)
             {
+                if (_responses == null) return null;
                 question--;
                 int difAns = 0;
                 for (int i = 0; i < _responses.Length; i++)

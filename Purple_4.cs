@@ -33,6 +33,11 @@ namespace Lab_6
                 _time = time;
                 _timeAlreadySet = true;
             }
+
+            public void Print()
+            {
+
+            }
         }
 
         public struct Group
@@ -62,13 +67,16 @@ namespace Lab_6
             public Group(Group g)
             {
                 _name = g.Name;
-                _sportsmen = new Sportsman[g.Sportsmen.Length];
+                if (g.Sportsmen != null)
+                    _sportsmen = new Sportsman[g.Sportsmen.Length];
+                else _sportsmen = new Sportsman[0];
                 Array.Copy(g.Sportsmen, _sportsmen, g.Sportsmen.Length);
             }
 
             public void Add(Sportsman sm)
             {
                 if (_sportsmen == null) return;
+
                 var sportsmen = new Sportsman[_sportsmen.Length + 1];
                 Array.Copy(_sportsmen, sportsmen, _sportsmen.Length);
                 sportsmen[sportsmen.Length - 1] = sm;
@@ -92,6 +100,8 @@ namespace Lab_6
 
             public void Sort()
             {
+                if (_sportsmen == null) return;
+
                 Array.Sort(_sportsmen, (a, b) =>
                 {
                     double x = a.Time - b.Time;
@@ -99,6 +109,19 @@ namespace Lab_6
                     else if (x > 0) return 1;
                     else return 0;
                 });
+            }
+
+            public static Group Merge(Group group1, Group group2)
+            {
+                var g = new Group("Финалисты");
+                g.Add(group1);
+                g.Add(group2);
+                return g;
+            }
+
+            public void Print()
+            {
+
             }
         }
     }

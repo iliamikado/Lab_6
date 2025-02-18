@@ -118,9 +118,11 @@ namespace Lab_6
                 sp2[i].Run(times2[i]);
             }
 
-            var g = new Purple_4.Group("group 1");
-            g.Add(sp1);
-            g.Add(sp2);
+            var g1 = new Purple_4.Group("group 1");
+            g1.Add(sp1);
+            var g2 = new Purple_4.Group("group 2");
+            g2.Add(sp2);
+            var g = Purple_4.Group.Merge(g1, g2);
             g.Sort();
 
             foreach (var s in g.Sportsmen)

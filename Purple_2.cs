@@ -34,7 +34,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_marks == null) return 0;
+                    if (_marks == null || _distance == -1) return 0;
 
                     int result = 0;
                     int imax = 0, imin = 0;
@@ -55,7 +55,7 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _distance = 0;
+                _distance = -1;
                 _marks = new int[JUDGES_COUNT];
                 for (int i = 0; i < JUDGES_COUNT; i++) _marks[i] = 0;
             }
@@ -75,6 +75,11 @@ namespace Lab_6
                 Array.Sort(array, (a, b) => {
                     return b.Result - a.Result;
                 });
+            }
+
+            public void Print()
+            {
+
             }
         }
     }
