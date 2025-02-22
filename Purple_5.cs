@@ -17,7 +17,7 @@ namespace Lab_6
             public string Animal => _animal;
             public string CharacterTrait => _characterTrait;
             public string Concept => _concept;
-            public string[] AnsArr
+            private string[] AnsArr
             {
                 get
                 {
@@ -76,9 +76,9 @@ namespace Lab_6
 
             public void Add(string[] answers)
             {
-                if (answers == null) return;
+                if (answers == null || _responses == null) return;
 
-                string[] ans = new string[] { "", "", "" };
+                string[] ans = new string[] { "-", "-", "-" };
                 for (int i = 0; i < Math.Min(3, answers.Length); i++)
                     ans[i] = answers[i];
                 var resp = new Response[_responses.Length + 1];
@@ -97,7 +97,9 @@ namespace Lab_6
                     bool newAns = true;
                     for (int j = 0; j < i; j++)
                     {
-                        if (_responses[i].AnsArr[question] == _responses[j].AnsArr[question])
+                        var ansArr = new string[] { _responses[i].Animal, _responses[i].CharacterTrait, _responses[i].Concept };
+                        var ansArr2 = new string[] { _responses[j].Animal, _responses[j].CharacterTrait, _responses[j].Concept };
+                        if (ansArr[question] == ansArr2[question])
                         {
                             newAns = false;
                             break;
@@ -113,12 +115,13 @@ namespace Lab_6
                 {
                     for (int i = 0; i < difAns; i++)
                     {
+                        var ansArr = new string[] { r.Animal, r.CharacterTrait, r.Concept };
                         if (answers[i].Count == 0)
                         {
-                            answers[i] = new Answer(r.AnsArr[question]);
+                            answers[i] = new Answer(ansArr[question]);
                             break;
                         }
-                        if (answers[i].Value == r.AnsArr[question])
+                        if (answers[i].Value == ansArr[question])
                         {
                             answers[i].Inc();
                             break;
@@ -132,7 +135,7 @@ namespace Lab_6
 
                 int n = difAns;
                 foreach (var a in answers)
-                    if (a.Value == "")
+                    if (a.Value == "-")
                     {
                         n--;
                         break;
@@ -141,7 +144,7 @@ namespace Lab_6
                 int step = 0;
                 for (int i = 0; i < ans.Length; i++)
                 {
-                    if (answers[i].Value == "") step = 1;
+                    if (answers[i].Value == "-") step = 1;
                     ans[i] = answers[i + step].Value;
                 }
                 return ans;

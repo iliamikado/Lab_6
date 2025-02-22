@@ -115,12 +115,8 @@ namespace Lab_6
             {
                 if (array == null) return;
 
-                Array.Sort(array, (a, b) => {
-                    double x = b.TotalScore - a.TotalScore;
-                    if (x < 0) return -1;
-                    else if (x > 0) return 1;
-                    else return 0;
-                });
+                var arr = array.OrderByDescending((x) => x.TotalScore).ToArray();
+                Array.Copy(arr, array, array.Length);
             }
 
             public void Print()

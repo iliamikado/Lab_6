@@ -10,14 +10,14 @@ namespace Lab_6
     {
         static void Main(string[] args)
         {
-            Check1();
-            Console.WriteLine();
-            Check2();
-            Console.WriteLine();
-            Check3();
-            Console.WriteLine();
-            Check4();
-            Console.WriteLine();
+            //Check1();
+            //Console.WriteLine();
+            //Check2();
+            //Console.WriteLine();
+            //Check3();
+            //Console.WriteLine();
+            //Check4();
+            //Console.WriteLine();
             Check5();
         }
 
@@ -95,7 +95,7 @@ namespace Lab_6
             Purple_3.Participant.Sort(part);
             foreach (var p in part)
             {
-                Console.WriteLine(p.Name + " " + p.Surname + " " + p.Score + " " + p.TopPlace + " " + p.MarksSum);
+                Console.WriteLine(p.Name + " " + p.Surname + " " + p.Score);
             }
         }
 
@@ -122,8 +122,10 @@ namespace Lab_6
             g1.Add(sp1);
             var g2 = new Purple_4.Group("group 2");
             g2.Add(sp2);
+            g1.Sort();
+            g2.Sort();
             var g = Purple_4.Group.Merge(g1, g2);
-            g.Sort();
+            //g.Sort();
 
             foreach (var s in g.Sportsmen)
                 Console.WriteLine(s.Name + " " + s.Surname + " " + s.Time);
@@ -131,9 +133,9 @@ namespace Lab_6
 
         static void Check5()
         {
-            var animals = "Тануки,Кошка,Серау,Коала,Коала,Панда,Серау,Макака,Сима энага,Панда,Тануки,Тануки,Тануки,Кошка,Тануки,Сима энага,Кошка,Сима энага,,Коала".Split(',');
-            var characterTraits = ",Амбициозность,Скромность,Внимательность,Целеустремленность,Проницательность,Скромность,Амбициозность,Внимательность,Уважительность,Скромность,Проницательность,Целеустремленность,Дружелюбность,Проницательность,Проницательность,Целеустремленность,Внимательность,Амбициозность,Проницательность".Split(',');
-            var concepts = ",Аниме,Фудзияма,Кимоно,Самурай,Манга,Суши,,Фудзияма,Фудзияма,Манга,Сакура,Кимоно,Манга,,Самурай,,Фудзияма,Сакура,Самурай".Split(',');
+            var animals = "Макака,Тануки,Тануки,Кошка,Сима_энага,Макака,Панда,Сима_энага,Серау,Панда,Сима_энага,Кошка,Панда,Кошка,Панда,Серау,Панда,Сима_энага,Панда,Кошка".Split(',');
+            var characterTraits = "-,Проницательность,Скромность,Внимательность,Дружелюбность,Внимательность,Проницательность,Проницательность,Внимательность,-,Дружелюбность,Внимательность,-,Уважительность,Целеустремленность,Дружелюбность,-,Скромность,Проницательность,Внимательность".Split(',');
+            var concepts = "Манга,Манга,Кимоно,Суши,Кимоно,Самурай,Манга,Суши,Сакура,Кимоно,Сакура,Кимоно,Сакура,Фудзияма,Аниме,-,Манга,Фудзияма,Самурай,Сакура".Split(',');
             var research = new Purple_5.Research("Res 1");
             for (int i = 0; i < 20; i++)
             {

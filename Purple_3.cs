@@ -55,7 +55,7 @@ namespace Lab_6
                 }
             }
 
-            public double MarksSum
+            private double MarksSum
             {
                 get
                 {
@@ -67,7 +67,7 @@ namespace Lab_6
                 }
             }
 
-            public int TopPlace
+            private int TopPlace
             {
                 get
                 {
@@ -111,6 +111,7 @@ namespace Lab_6
 
             public static void SetPlaces(Participant[] participants)
             {
+                if (participants == null) return;
                 for (int i = 0; i < JUDGES_COUNT; i++)
                 {
                     Array.Sort(participants, (a, b) =>

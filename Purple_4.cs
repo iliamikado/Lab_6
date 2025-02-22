@@ -68,9 +68,11 @@ namespace Lab_6
             {
                 _name = g.Name;
                 if (g.Sportsmen != null)
+                {
                     _sportsmen = new Sportsman[g.Sportsmen.Length];
+                    Array.Copy(g.Sportsmen, _sportsmen, g.Sportsmen.Length);
+                }
                 else _sportsmen = new Sportsman[0];
-                Array.Copy(g.Sportsmen, _sportsmen, g.Sportsmen.Length);
             }
 
             public void Add(Sportsman sm)
@@ -114,8 +116,30 @@ namespace Lab_6
             public static Group Merge(Group group1, Group group2)
             {
                 var g = new Group("Финалисты");
-                g.Add(group1);
-                g.Add(group2);
+                var s1 = group1._sportsmen;
+                var s2 = group2._sportsmen;
+                if (s1 == null) s1 = new Sportsman[0];
+                if (s2 == null) s2 = new Sportsman[0];
+                g._sportsmen = new Sportsman[s1.Length + s2.Length];
+                int i1 = 0, i2 = 0, ind = 0;
+                while (i1 < s1.Length && i2 < s2.Length)
+                {
+                    if (s1[i1].Time <= s2[i2].Time)
+                    {
+                        g._sportsmen[ind++] = s1[i1++];
+                    } else
+                    {
+                        g._sportsmen[ind++] = s2[i2++];
+                    }
+                }
+                while (i1 < s1.Length)
+                {
+                    g._sportsmen[ind++] = s1[i1++];
+                }
+                while (i2 < s2.Length)
+                {
+                    g._sportsmen[ind++] = s2[i2++];
+                }
                 return g;
             }
 
