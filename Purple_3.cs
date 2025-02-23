@@ -116,7 +116,8 @@ namespace Lab_6
                 {
                     Array.Sort(participants, (a, b) =>
                     {
-                        double x = a.Marks[i] - b.Marks[i];
+                        double ma = a.Marks != null ? a.Marks[i] : 0, mb = b.Marks != null ? b.Marks[i] : 0;
+                        double x = ma - mb;
                         if (x < 0) return 1;
                         else if (x > 0) return -1;
                         else return 0;

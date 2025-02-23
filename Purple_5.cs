@@ -78,9 +78,10 @@ namespace Lab_6
             {
                 if (answers == null || _responses == null) return;
 
-                string[] ans = new string[] { "-", "-", "-" };
+                string[] ans = new string[] { null, null, null };
                 for (int i = 0; i < Math.Min(3, answers.Length); i++)
                     ans[i] = answers[i];
+
                 var resp = new Response[_responses.Length + 1];
                 Array.Copy(_responses, resp, resp.Length - 1);
                 resp[resp.Length - 1] = new Response(ans[0], ans[1], ans[2]);
@@ -135,7 +136,7 @@ namespace Lab_6
 
                 int n = difAns;
                 foreach (var a in answers)
-                    if (a.Value == "-")
+                    if (a.Value == null)
                     {
                         n--;
                         break;
@@ -144,7 +145,7 @@ namespace Lab_6
                 int step = 0;
                 for (int i = 0; i < ans.Length; i++)
                 {
-                    if (answers[i].Value == "-") step = 1;
+                    if (answers[i].Value == null) step = 1;
                     ans[i] = answers[i + step].Value;
                 }
                 return ans;
